@@ -8,16 +8,23 @@ apply plugin: 'io.spring.dependency-management'
 group = 'com.azxca1731'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
+ext['hibernate.version'] = '5.2.11.Final' //추가
 
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
 }
-
-repositories {
-    mavenCentral()
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.6.RELEASE")
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.4.RELEASE"
+    }
 }
+
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
