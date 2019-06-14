@@ -1,9 +1,12 @@
 package com.azxca1731.webservice.domain.posts;
 
+import lombok.Getter;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
+@Getter
 public class PostsMainResponseDto {
     private Long id;
     private String title;

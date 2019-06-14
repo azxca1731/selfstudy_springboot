@@ -6,10 +6,13 @@ spring:
 ---
 spring:
   profiles: local
+  datasource:
+    data: classpath:data-h2.sql
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: create-drop
+      use-new-id-generator-mappings: false
   h2:
     console:
       enabled: true
