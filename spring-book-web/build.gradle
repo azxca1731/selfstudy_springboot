@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.0.3.RELEASE'
+        springBootVersion = '2.1.5.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -21,7 +21,7 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
 }
-
+//ext['hibernate.version'] = '5.2.11.Final' //추가
 ext['json-path.version'] = '2.2.1'
 
 dependencies {
@@ -31,7 +31,6 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
-
     runtime('com.h2database:h2')
     //runtime('mysql:mysql-connector-java')
     runtime('org.springframework.boot:spring-boot-devtools')
