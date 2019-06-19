@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.5.14.RELEASE'
+        springBootVersion = '2.0.3.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -21,15 +21,18 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
 }
-//ext['hibernate.version'] = '5.2.11.Final' //추가
-ext['json-path.version'] = '2.2.1'
+
+ext['hibernate.version'] = '5.2.11.Final' //추가
 
 dependencies {
-    compile('org.springframework.security.oauth:spring-security-oauth2')
+    compile('org.springframework.security:spring-security-oauth2-client')
+    compile('org.springframework.security:spring-security-oauth2-jose')
+    compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
-    runtime('com.h2database:h2')
+    compile('com.h2database:h2')
+
     runtime('org.springframework.boot:spring-boot-devtools')
     compileOnly('org.projectlombok:lombok')
     testCompile('org.springframework.boot:spring-boot-starter-test')

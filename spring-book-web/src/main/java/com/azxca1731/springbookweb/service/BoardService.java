@@ -17,15 +17,12 @@ public class BoardService {
     }
 
     public Page<Board> findBoardList(Pageable pageable) {
-        pageable = new PageRequest(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, pageable.getPageSize());
+        pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, pageable.getPageSize());
         return boardRepository.findAll(pageable);
     }
 
     public Board findBoardByIdx(Long idx) {
-        return boardRepository.findOne(idx);
+        return boardRepository.findById(idx).orElse(new Board());
     }
 
-    public Board saveAndUpdateBoard(Board board) {
-        return boardRepository.save(board);
-    }
 }
