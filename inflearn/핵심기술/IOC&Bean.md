@@ -102,3 +102,35 @@ Application Context 구현 방법
 
 -   @ComponentScan은 스캔할 패키지와 애노테이션에 대한 정보
 -   실제 스캐닝은 ConfigurationClassPostProcessor라는 BeanFactoryPostProcessor에 의해 처리 됨
+
+---
+
+### 빈의 스코프
+
+스코프
+
+-   싱글톤 (Service, Repository등..)
+-   프로토타입 (새로운 인스턴스가 그때마다 필요함 - `@Scope("prototype")`)
+    -   Request
+    -   Session
+    -   WebSocket
+
+프로토타입 빈이 싱근톤 빈을 참조하면?
+
+-   아무 문제 없음
+
+싱글톤 빈이 프로토 타입 빈을 참조하면?
+
+-   클래스가 생성될 때 고정되므로 업데이트가 되지 않음
+-   업데이트 하려면
+    -   scoped-proxy
+    -   Object-Provider
+    -   Provider
+
+`@Scope(value = "prototype", proxyMode = ScopedProxyMode.TARGET_CLASS)`로 설정하는게
+가장 POJO스럽다!
+
+싱글톤 객체 사용시 주의할 점
+
+-   프로퍼티가 공유.
+-   ApplicationContext 초기 구동시 인스턴스 생성
