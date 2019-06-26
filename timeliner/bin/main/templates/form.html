@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmln:th="http://www.thymeleaf.orf">
+<head>
+    <meta charset="UTF-8">
+    <title>All Post</title>
+</head>
+<body>
+    Show All Post in Here!
+    <form method="post" th:action="@{/}" role="form">
+        <div>
+            <input type="text" name="title" />
+            <input type="text" name="content" />
+            <input type="submit" value="제출하기" />
+        </div>
+    </form>
+</body>
+</html>

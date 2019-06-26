@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmln:th="http://www.thymeleaf.orf">
+<head>
+    <title>Timeliner - Get your Timeline!</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/lib/css/bulma.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div th:replace="layout/header::header"></div>
+    Show All Post in Here!
+    <form method="post" th:action="@{/}" role="form">
+        <div>
+            <input type="text" name="title" />
+            <input type="text" name="content" />
+            <input type="submit" value="제출하기" />
+        </div>
+    </form>
+    <div th:replace="layout/footer::footer"></div>
+</body>
+</html>

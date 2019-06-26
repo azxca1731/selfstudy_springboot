@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Post</title>
+</head>
+<body>
+    Show All Post in Here!
+    <a href="/new">새 포스트 만들기</a>
+    <tr th:each="post : ${posts}">
+        <td th:text="${post.title}">Onions</td>
+        <td th:text="${post.publishedTime}">yes</td>
+        <td><a th:href="@{'/'+${post.idx}}">자세히보기</a></td>
+    </tr>
+</body>
+</html>

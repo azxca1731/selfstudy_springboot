@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmln:th="http://www.thymeleaf.orf">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+    <div>
+        안녕하세요!
+        <img th:src="@{/images/kimdoe.jpeg}" />
+        <div th:text="${post.title}"></div>
+        <a href="/">홈으로</a>
+    </div>
+</body>
+</html>

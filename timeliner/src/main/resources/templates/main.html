@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Timeliner - Get your Timeline!</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="/lib/css/bulma.min.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div th:replace="layout/header::header"></div>
+        <a href="/new">새 포스트 만들기</a>
+        <div class="section">
+            <div class="card-deck container">
+                <tr th:each="post : ${posts}">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image is-3by1">
+                                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="image is-48x48">
+                                        <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                                    </figure>
+                                </div>
+                                <div class="media-content">
+                                    <p class="title is-4">John Smith</p>
+                                    <p class="subtitle is-6">@johnsmith</p>
+                                </div>
+                            </div>
+
+                            <div class="content">
+                                <div th:text="${post.title}" />
+                                <br>
+                                <time datetime="2016-1-1"><div th:text="${post.publishedTime}">yes</div></time>
+                                <a th:href="@{'/'+${post.idx}}">자세히보기</a>
+                            </div>
+                        </div>
+                    </div>
+                </tr>
+            </div>
+        </div>
+        <div th:replace="layout/footer::footer"></div>
+    </body>
+</html>

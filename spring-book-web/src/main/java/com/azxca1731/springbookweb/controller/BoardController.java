@@ -1,6 +1,7 @@
 package com.azxca1731.springbookweb.controller;
 
 import com.azxca1731.springbookweb.service.BoardService;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -20,7 +21,8 @@ public class BoardController {
     BoardService boardService;
 
     @GetMapping({"","/"})
-    public String board(@RequestParam(value = "idx", defaultValue = "0") Long idx, Model model){
+    public String board(@RequestParam(value = "idx", defaultValue = "0") Long idx, HttpServletRequest request, Model model){
+        System.out.println(request.getSession());
         model.addAttribute("board", boardService.findBoardByIdx(idx));
         return "/board/form";
     }
