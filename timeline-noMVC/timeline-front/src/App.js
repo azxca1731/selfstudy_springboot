@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Post from "./Post";
 import Input from "./Input";
@@ -17,13 +17,27 @@ function App() {
 		loading: false,
 		posts: []
 	});
+
+	// useEffect로 ComponentDidMount처럼 변경
+	// useEffect(() => {
+	// 	axios
+	// 		.get("http://localhost:8080/posts")
+	// 		.then(({ data }) =>
+	// 			setState({ input: "", loading: false, posts: data })
+	// 		);
+	// }, []);
+
 	const getPosts = async () => {
 		setState({
 			...appState,
 			loading: true
 		});
-		const value = await axios.get("localhost:8080/posts");
-		console.log(value);
+		try {
+			const value = await axios.get("http://localhost:8080/posts");
+			setState({ input: "", loading: false, posts: value.data });
+		} catch (err) {
+			console.log(err);
+		}
 	};
 	return (
 		<AppDiv>
@@ -33,8 +47,8 @@ function App() {
 				getPosts={getPosts}
 				appState={appState}
 			/>
-			{appState.posts.map(index => (
-				<Post key={index} />
+			{appState.posts.map(({ idx }) => (
+				<Post key={idx} />
 			))}
 		</AppDiv>
 	);
