@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Post from "./Post";
 import Input from "./Input";
+import axios from "axios";
 
 const AppDiv = styled.div`
 	padding: 30px;
@@ -11,13 +12,30 @@ const AppDiv = styled.div`
 `;
 
 function App() {
-	const createPost = () =>
-		[1, 2, 3, 4, 5, 6, 7, 8, 9].map(index => <Post key={index} />);
+	const [appState, setState] = useState({
+		input: "",
+		loading: false,
+		posts: []
+	});
+	const getPosts = async () => {
+		setState({
+			...appState,
+			loading: true
+		});
+		const value = await axios.get("localhost:8080/posts");
+		console.log(value);
+	};
 	return (
 		<AppDiv>
 			<h2 className="text-primary text-center mb-4">Timeliner!</h2>
-			<Input />
-			{createPost()}
+			<Input
+				changeState={setState}
+				getPosts={getPosts}
+				appState={appState}
+			/>
+			{appState.posts.map(index => (
+				<Post key={index} />
+			))}
 		</AppDiv>
 	);
 }
